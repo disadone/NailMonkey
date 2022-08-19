@@ -1,0 +1,54 @@
+# make some lists
+# hippocampal list
+# CA1,2,3,4, (pre,para,pro)subiculum, DG
+set HIPP_list = "317,386,488,489,352,381,455,487,490"
+# amygdaloid list
+set AMY_list = "302,307,311,319,331,340,356,436,437,445,466,477,479,480,508,509"
+set CLAUSTRUM = "474"
+3dcalc -a D99_FINAL_right_0707.nii.gz'<300..1000>' -expr "a*not(amongst(a,$HIPP_list,$AMY_list,$CLAUSTRUM))" \
+  -prefix temp_cortex_only.nii.gz -overwrite
+3dLocalstat -stat mode -nbhd 'SPHERE(-1.8)' -prefix temp_cortex_mode1.8.nii.gz -overwrite \
+   temp_cortex_only.nii.gz
+3dLocalstat -stat mode -nbhd 'SPHERE(-3)' -prefix temp_cortex_mode3.nii.gz -overwrite \
+   temp_cortex_only.nii.gz
+3dLocalstat -stat mode -nbhd 'SPHERE(-4)' -prefix temp_cortex_mode4.nii.gz -overwrite \
+   temp_cortex_only.nii.gz
+3dLocalstat -stat mode -nbhd 'SPHERE(-5)' -prefix temp_cortex_mode5.nii.gz -overwrite \
+   temp_cortex_only.nii.gz
+
+set bexpr = "b*amongst(b,$HIPP_list,$AMY_list,$CLAUSTRUM)"
+set expr = "a+${bexpr} + c*not(a)*not(${bexpr})"
+3dcalc -a D99_FINAL_right_0707.nii.gz'<0..299>' -b D99_FINAL_right_0707.nii.gz'<300..1000>' \
+   -c temp_cortex_mode1.8.nii.gz -expr "$expr" -datum short \
+   -prefix D99_FINAL_right_0707_smooth1.8.nii.gz -overwrite
+3drefit -cmap INT_CMAP -copytables D99_FINAL_right_0707.nii.gz D99_FINAL_right_0707_smooth1.8.nii.gz
+3drefit -cmap INT_CMAP -copytables D99_FINAL_right_0707.nii.gz temp_cortex_mode*.nii.gz
+
+#
+#3dinfo -atlas_points D99_FINAL_right_0707.nii.gz | grep -iC 3 amy|grep "VAL="
+ #VAL="302"
+ #VAL="307"
+ #VAL="311"
+ #VAL="319"
+ #VAL="331"
+ #VAL="340"
+ #VAL="356"
+ #VAL="436"
+ #VAL="437"
+ #VAL="445"
+ #VAL="466"
+ #VAL="477"
+ #VAL="479"
+ #VAL="480"
+ #VAL="508"
+ #VAL="509"
+
+# protect cortical list
+# hippocampal+amygdaloid+claustrum
+# to apply additional modal smoothing to 
+
+# labels are exported from Excel spreadsheet to csv file of index,label, longnames
+# where longnames can include encompassing regions
+# remove the unwanted labels from csv file
+
+

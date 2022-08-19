@@ -1,0 +1,53 @@
+<TEMPLATE_SPACE
+  space_name="D99_Macaque"
+  generic_space="D99_Macaque"
+  comment="The segmentation was extracted from the smoothed labels of the D99 template"
+></TEMPLATE_SPACE>
+
+<TEMPLATE_SPACE
+  space_name="D99_Macaque_book"
+  generic_space="D99_Macaque_book"
+  comment="The Saleem-Logothetis atlas uses an ear-bar-zero origin"
+></TEMPLATE_SPACE>
+
+<TEMPLATE
+   template_name="D99_template"
+   dset_name="D99_template.nii.gz"
+   template_space="D99_Macaque"
+   description="D99 Surrogate template"
+></TEMPLATE>
+
+<XFORM
+  ni_type="12*float"
+  ni_dimen="1"
+  xform_name="D99_Macaque::D99_Macaque_book"
+  source="D99_Macaque"
+  dest="D99_Macaque_book"
+  comment="Shift between ear-bar-zero and AC origin"
+  xform_type="Affine" >
+  1 0 0 0
+  0 1 0 -20
+  0 0 1 12
+></XFORM>
+
+<ATLAS
+  atlas_name="Saleem_D99_v2.0"
+  dset_name="D99_atlas_v2.0.nii.gz"
+  template_space="D99_Macaque"
+  description="Saleem subcortical and cortical regions v2.0"
+  comment="Please cite:
+          High-resolution mapping and digital atlas of subcortical regions in
+          the macaque monkey based on matched MAP-MRI and histology 
+          Saleem, Avram, Glen, Yen, Ye, Komlosh, Basser
+          NeuroImage, Nov. 2021
+          https://doi.org/10.1016/j.neuroimage.2021.118759
+
+          Three-dimensional digital template atlas of the macaque brain
+          Reveley, Gruslys, Ye, Glen, Samaha, Russ, Saad, Seth, Leopold, Saleem
+          Cerebral Cortex, Aug. 2016.
+          https://doi.org/10.1093/cercor/bhw248
+
+          Note the atlas dataset may not be modified or redistributed without prior
+          consent from the authors.
+          Please contact glend@mail.nih.gov or saleemks@mail.nih.gov with questions,
+          comments and suggestions."></ATLAS>

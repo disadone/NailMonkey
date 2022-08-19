@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GIFTI SYSTEM "http://gifti.projects.nitrc.org/gifti.dtd">
+<GIFTI Version="1.0"  NumberOfDataArrays="2">
+   <MetaData>
+      <MD>
+         <Name><![CDATA[gifticlib-version]]></Name>
+         <Value><![CDATA[gifti library version 1.17, 19 Feb, 2021]]></Value>
+      </MD>
+   </MetaData>
+   <LabelTable/>
+   <DataArray Intent="NIFTI_INTENT_POINTSET"
+              DataType="NIFTI_TYPE_FLOAT32"
+              ArrayIndexingOrder="RowMajorOrder"
+              Dimensionality="2"
+              Dim0="44"
+              Dim1="3"
+              Encoding="Base64Binary"
+              Endian="LittleEndian"
+              ExternalFileName=""
+              ExternalFileOffset="">
+      <MetaData>
+         <MD>
+            <Name><![CDATA[AnatomicalStructurePrimary]]></Name>
+            <Value><![CDATA[Unknown]]></Value>
+         </MD>
+         <MD>
+            <Name><![CDATA[AnatomicalStructureSecondary]]></Name>
+            <Value><![CDATA[Unknown]]></Value>
+         </MD>
+         <MD>
+            <Name><![CDATA[GeometricType]]></Name>
+            <Value><![CDATA[Unknown]]></Value>
+         </MD>
+         <MD>
+            <Name><![CDATA[UniqueID]]></Name>
+            <Value><![CDATA[AFN_lwRgCg-ezkKml_zCqC-h7Q]]></Value>
+         </MD>
+         <MD>
+            <Name><![CDATA[date]]></Name>
+            <Value><![CDATA[Mon Oct 18 17:49:15 2021]]></Value>
+         </MD>
+      </MetaData>
+      <CoordinateSystemTransformMatrix>
+         <DataSpace><![CDATA[NIFTI_XFORM_UNKNOWN]]></DataSpace>
+         <TransformedSpace><![CDATA[NIFTI_XFORM_UNKNOWN]]></TransformedSpace>
+         <MatrixData>
+            1.000000 0.000000 0.000000 0.000000 
+            0.000000 1.000000 0.000000 0.000000 
+            0.000000 0.000000 1.000000 0.000000 
+            0.000000 0.000000 0.000000 1.000000 
+         </MatrixData>
+      </CoordinateSystemTransformMatrix>
+      <Data>AACAvgAAiMEAAIzAAAAAgAAAiMEAAIzAAACAvgAAhsEAAIzAAACAvgAAicEAAIjAAAAAgAAAicEAAIjAAADAvgAAiMEAAIjAAAAAPgAAiMEAAIjAAAAAgAAAh8EAAIjAAADAvgAAhsEAAIjAAAAAvgAAhsEAAIjAAACAvgAAhcEAAIjAAAAAgAAAhsEAAITAAACAvgAAhMEAAITAAACAPgAAhMEAAITAAACAvgAAicEAAIDAAAAAgAAAicEAAIDAAADAvgAAiMEAAIDAAACAvgAAiMEAAHjAAAAAPgAAiMEAAIDAAAAAgAAAiMEAAHjAAADAvgAAhsEAAIDAAAAAPgAAhsEAAIDAAAAAgAAAhcEAAIDAAACAPgAAhcEAAIDAAADAvgAAhMEAAIDAAAAAvgAAhMEAAIDAAACAvgAAg8EAAIDAAAAAPgAAhMEAAIDAAAAAgAAAhMEAAHjAAADAPgAAhMEAAIDAAACAPgAAg8EAAIDAAACAPgAAhMEAAHjAAACAvgAAh8EAAHDAAAAAgAAAh8EAAHDAAADAvgAAhsEAAHDAAACAvgAAhsEAAGjAAAAAPgAAhsEAAHDAAAAAgAAAhsEAAGjAAADAvgAAhMEAAHDAAACAvgAAg8EAAHDAAACAvgAAhMEAAGjAAAAAPgAAhMEAAHDAAAAAgAAAg8EAAHDAAAAAgAAAhMEAAGjA</Data>
+   </DataArray>
+   <DataArray Intent="NIFTI_INTENT_TRIANGLE"
+              DataType="NIFTI_TYPE_INT32"
+              ArrayIndexingOrder="RowMajorOrder"
+              Dimensionality="2"
+              Dim0="84"
+              Dim1="3"
+              Encoding="Base64Binary"
+              Endian="LittleEndian"
+              ExternalFileName=""
+              ExternalFileOffset="">
+      <MetaData>
+         <MD>
+            <Name><![CDATA[TopologicalType]]></Name>
+            <Value><![CDATA[Closed]]></Value>
+         </MD>
+         <MD>
+            <Name><![CDATA[UniqueID]]></Name>
+            <Value><![CDATA[AFN_HYuQVcLZ5WgP6Slq3HNBnQ]]></Value>
+         </MD>
+         <MD>
+            <Name><![CDATA[date]]></Name>
+            <Value><![CDATA[Mon Oct 18 17:49:15 2021]]></Value>
+         </MD>
+      </MetaData>
+      <Data>AwAAAAUAAAAAAAAAAQAAAAQAAAAAAAAAAAAAAAQAAAADAAAAAQAAAAYAAAAEAAAAAAAAAAUAAAACAAAAAgAAAAUAAAAIAAAABwAAAAEAAAAJAAAAAQAAAAIAAAAJAAAAAQAAAAAAAAACAAAAAQAAAAcAAAAGAAAACAAAAAoAAAACAAAAAgAAAAoAAAAJAAAADgAAABAAAAADAAAAAwAAABAAAAAFAAAADwAAAAMAAAAEAAAADwAAAA4AAAADAAAABAAAAAYAAAAPAAAADwAAAAYAAAASAAAAEAAAAAgAAAAFAAAAFAAAAAgAAAAQAAAACQAAAAsAAAAHAAAACwAAABUAAAAHAAAAFQAAAAYAAAAHAAAAFQAAABIAAAAGAAAACgAAAAgAAAAMAAAACAAAABgAAAAMAAAACAAAABQAAAAYAAAADAAAABkAAAAKAAAACgAAABkAAAAJAAAAGQAAABYAAAAJAAAAFgAAAAsAAAAJAAAACwAAABsAAAAWAAAACwAAAA0AAAAbAAAACwAAABUAAAAXAAAADQAAAAsAAAAXAAAADQAAAB0AAAAXAAAAGAAAABoAAAAMAAAADAAAABoAAAAZAAAAGwAAAB4AAAANAAAADQAAAB4AAAAdAAAAEQAAABAAAAAOAAAADwAAABMAAAAOAAAADgAAABMAAAARAAAAEgAAABMAAAAPAAAAIAAAACIAAAARAAAAIgAAABAAAAARAAAAIgAAABQAAAAQAAAAIAAAABEAAAATAAAAIAAAABMAAAAhAAAAEwAAABIAAAAhAAAAEgAAACQAAAAhAAAAEgAAABUAAAAkAAAAIgAAABgAAAAUAAAAJgAAABgAAAAiAAAAGQAAABwAAAAWAAAAGwAAABYAAAAcAAAAFQAAAB8AAAAXAAAAKQAAABUAAAAfAAAAJAAAACkAAAAVAAAAHQAAAB8AAAAXAAAAJgAAACcAAAAYAAAAGAAAACcAAAAaAAAAGQAAABoAAAAcAAAAGgAAACoAAAAcAAAAGgAAACcAAAAqAAAAKgAAAB8AAAApAAAAKgAAAB4AAAAfAAAAKgAAABwAAAAbAAAAHgAAACoAAAAbAAAAHgAAAB8AAAAdAAAAIwAAACIAAAAgAAAAIQAAACUAAAAgAAAAIAAAACUAAAAjAAAAJAAAACUAAAAhAAAAKAAAACYAAAAjAAAAIwAAACYAAAAiAAAAKwAAACMAAAAlAAAAKAAAACMAAAArAAAAKQAAACsAAAAkAAAAJAAAACsAAAAlAAAAKAAAACcAAAAmAAAAJwAAACgAAAAqAAAAKgAAACgAAAArAAAAKgAAACsAAAApAAAA</Data>
+   </DataArray>
+</GIFTI>
