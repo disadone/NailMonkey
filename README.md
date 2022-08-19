@@ -10,8 +10,11 @@
 - Atlas (D99 is already embedded in the program)
 
 # Example
-The `DICOM` images should be transformed into nii file.
-If you are using Ubuntu, you can
+the example file is taken from [PRIME-MRM](https://osf.io/mhgs8) dataset Newcastle_prime-mrm/0000001/session_1/anat_1/.
+
+The `DICOM` images should be transformed into nii file first.
+If you are using Ubuntu, you can use `dcm2nii` to do the job.
+
 `sudo apt install dcm2nii`
 
 `run.py` file gives an example code to run a dataset contained in `./data_example/anta.nii`
@@ -26,6 +29,10 @@ several files are generated:
 - `mask_329_LIPv_rec_anat.nii.gz` mask of the OFC 13b area in rectified original space
 - `tpl_bet_rec_anat.mat` the transformation matrix from the rectified original space to template space 
 - `tpl_bet_rec_anat_inv.mat` the transformation matrix from the template space to rectified original space 
+
+## Figures
+- LIPv <img src="Doc/LIPv.jpg">
+- OFC 13b <img src="Doc/OFC13b.jpg">
 
 # Atlas
 You can use other atlas but it means you need to deeply modify the program. `Atlas_generation.ipynb` is used to generate files in `D99_mask`.
