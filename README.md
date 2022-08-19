@@ -10,7 +10,7 @@
 - Atlas (D99 is already embedded in the program)
 
 # Example
-the example file is taken from [PRIME-MRM](https://osf.io/mhgs8) dataset Newcastle_prime-mrm/0000001/session_1/anat_1/.
+The example file is taken from [PRIME-MRM](https://osf.io/mhgs8) dataset Newcastle_prime-mrm/0000001/session_1/anat_1/.
 
 The `DICOM` images should be transformed into nii file first.
 If you are using Ubuntu, you can use `dcm2nii` to do the job.
@@ -21,7 +21,7 @@ If you are using Ubuntu, you can use `dcm2nii` to do the job.
 
 OFC 13b (306) and LIPv (329) are shown here.
 
-several files are generated:
+Several files are generated:
 - `rec_anta.nii.gz` orientation rectified nii file in rectified original space
 - `bet_rec_anta.nii.gz` brain extracted orientation rectified nii file in rectified original space
 - `tpl_bet_rec_anta.nii.gz` brain extracted orientation rectified nii file in D99 template space
