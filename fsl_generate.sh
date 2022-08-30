@@ -29,7 +29,7 @@ tpl_bet_inv_mat=$dirf/tpl_bet_${basef%$postf}_inv.mat
 bet $2 $bet_file
 
 # # register template to the monkey, it may take a while
-flirt -in $bet_file -ref ../D99_v2.0_dist/D99_template.nii.gz -omat $tpl_bet_mat -out $tpl_bet_file
+flirt -in $bet_file -ref ./D99_v2.0_dist/D99_template.nii.gz -omat $tpl_bet_mat -out $tpl_bet_file
 convert_xfm -omat $tpl_bet_inv_mat -inverse $tpl_bet_mat # inverse transformation
 
 

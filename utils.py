@@ -3,7 +3,39 @@ import numpy as np
 import re,subprocess
 import os
 import matplotlib.pyplot as plt
+import nibabel as nib
 aa=np.asarray
+
+def load_nii(file_path):
+    """wrap load nii file using nibabel
+
+    Parameters
+    ----------
+    file_path : str
+        nii file path
+
+    Returns
+    -------
+    nibabel.nifti1.Nifti1Image, ndarray[float,3]
+        mri data
+    """    
+    epi_img=nib.load(file_path)
+    return epi_img,epi_img.get_fdata()
+def save_nii(file_path,img_data,epi_img):
+    """warp save nii file using nibabel
+
+    Parameters
+    ----------
+    file_path : str
+        nii file path
+    img_data : ndarray[float,3]
+        image data
+    epi_img : nibabel.nifti1.Nifti1Image
+        Nifti1Image object for affine and header while saving
+    """    
+    nii=nib.Nifti1Image(img_data, epi_img.affine, epi_img.header)
+    nib.save(nii,file_path)
+
 
 def show_slices(epi_img_data,EBZ=None,title=None,fig=None,axes=None):
     """show slices of MRI data
@@ -175,8 +207,8 @@ def ProcessNiiFile(main_folder,nii_file,dims=None,areas=None):
     
     print("dimension direction",dim1,dim2,dim3)
     if areas:
-        process_info = subprocess.Popen(f"sh fsl_generate.sh {nii_file} {new_nii_file} {dim1} {dim2} {dim3} {str_areas}",stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        process_info = subprocess.Popen(f"zsh fsl_generate.sh {nii_file} {new_nii_file} {dim1} {dim2} {dim3} {str_areas}",stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     else:
-        process_info = subprocess.Popen(f"sh fsl_generate.sh {nii_file} {new_nii_file} {dim1} {dim2} {dim3}", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        process_info = subprocess.Popen(f"zsh fsl_generate.sh {nii_file} {new_nii_file} {dim1} {dim2} {dim3}", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     print(process_info.communicate())
     return new_nii_file,hdinfo
