@@ -13,7 +13,7 @@
 The example file is taken from [PRIME-MRM](https://osf.io/mhgs8) dataset Newcastle_prime-mrm/0000001/session_1/anat_1/.
 
 The `DICOM` images should be transformed into nii file first.
-If you are using Ubuntu, you can use `dcm2nii` to do the job.
+If you are using Ubuntu, you can use `dcm2nii` to do the job. `3DSlicer` can also finish the job.
 
 `sudo apt install dcm2nii`
 
@@ -22,13 +22,21 @@ If you are using Ubuntu, you can use `dcm2nii` to do the job.
 OFC 13b (306) and LIPv (329) are shown here.
 
 Several files are generated:
-- `rec_anta.nii.gz` orientation rectified nii file in rectified original space
-- `bet_rec_anta.nii.gz` brain extracted orientation rectified nii file in rectified original space
+- `rec_anta.nii.gz` orientation rectified nii file in rectified space
+- `bet_anta.nii.gz` brain extracted nii file in original space
+- `betrec_anta.nii.gz` brain extracted orientation rectified nii file in rectified space
 - `tpl_bet_rec_anta.nii.gz` brain extracted orientation rectified nii file in D99 template space
-- `mask_306_13b_rec_anat.nii.gz` mask of the OFC 13b area in rectified original space
-- `mask_329_LIPv_rec_anat.nii.gz` mask of the OFC 13b area in rectified original space
-- `tpl_bet_rec_anat.mat` the transformation matrix from the rectified original space to template space 
-- `tpl_bet_rec_anat_inv.mat` the transformation matrix from the template space to rectified original space 
+- `mask_306_13b_rec_anat.nii.gz` mask of the OFC 13b area in rectified space
+- `mask_329_LIPv_rec_anat.nii.gz` mask of the OFC 13b area in rectified space
+- `mask_306_13b_anat.nii.gz` mask of the OFC 13b area in original space
+- `mask_329_LIPv_anat.nii.gz` mask of the OFC 13b area in original space
+- `tpl_betrec_anat.mat` the transformation matrix from the rectified space to template space 
+- `tpl_betrec_anat_inv.mat` the transformation matrix from the template space to rectified space 
+- `tpl_betrec_bet_anat.mat` the transformation matrix from the rectified space to original space
+- `tpl_EBZ_rec_anat.txt` ear bar zero (EBZ) in rectificed original space defined in D99 template
+- `tpl_EBZ_anat.txt` ear bar zero (EBZ) in original space defined in D99 template
+- `merged_mask_rec_anat.nii.gz` merged mask in rectified space
+- `merged_mask_anat.nii.gz` merged mask in original space
 
 ## Figures
 - LIPv <img src="Doc/LIPv.jpg">
@@ -40,4 +48,4 @@ You can use other atlas but it means you need to deeply modify the program. `Atl
 # Current Issues
 
 - The auto orientation detection is not correct for now, you need try different orientations using `dims` option in `ProcessNiiFile` function.
-- Only tested in macOS Monterey 12.5 with zsh
+- Only tested in macOS Monterey 12.5/13.2.1 with zsh

@@ -171,7 +171,7 @@ def DetermineOrientTransformation(hdinfo):
 #     area_epi_img_data[sg_l:sg_r,cr_l:rs_r,hz_l:hz_r]=-1 # as the area marker
 #     return area_epi_img_data
 
-def ProcessNiiFile(main_folder,nii_file,dims=None,areas=None):
+def ProcessNiiFile(main_folder,nii_file,dims=None,back=True,areas=None):
     """The pipeline to process nii file
 
     Parameters
@@ -182,6 +182,8 @@ def ProcessNiiFile(main_folder,nii_file,dims=None,areas=None):
         the structural nii file
     dims : list[str](3)
         rotate the nii file direction for `fsloreint` command , by default None
+    back : bool
+        transfer back all nii files to the initial file space
     areas : list[int]
         list of No. in brain area excel file
     
@@ -190,25 +192,40 @@ def ProcessNiiFile(main_folder,nii_file,dims=None,areas=None):
     tuple(str)
         direction rectified nii file and the original nii file header info
     """
+    for dim in dims:
+        if not(dim in ['x','y','z','-x','-y','-z']):
+            raise Exception("dim must be x,y,z or -x,-y,-z")
+    
     if areas:
         str_areas=' '.join([str(int(a)) for a in areas])
-    name = nii_file.split('.')[0]
-    nii_file = f"{main_folder}{nii_file}"
-    new_nii_file = f"{main_folder}rec_{name}.nii.gz" # rectified file
-    print(nii_file)
-    print(os.getcwd())
+    nii_file = os.path.join(main_folder,nii_file)
+    print("nii file dealing:",nii_file)
+    print("its path:",os.getcwd())
     hdinfo_str = subprocess.Popen(f"fslhd {nii_file}", 
         stdout=subprocess.PIPE, shell=True).communicate()[0].decode('ascii')
     hdinfo = ArrangeHeader(hdinfo_str)
-    if dims is None:
-        dim1,dim2,dim3 = DetermineOrientTransformation(hdinfo)
-    else:
-        dim1,dim2,dim3=dims
-    
-    print("dimension direction",dim1,dim2,dim3)
-    if areas:
-        process_info = subprocess.Popen(f"zsh fsl_generate.sh {nii_file} {new_nii_file} {dim1} {dim2} {dim3} {str_areas}",stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    else:
-        process_info = subprocess.Popen(f"zsh fsl_generate.sh {nii_file} {new_nii_file} {dim1} {dim2} {dim3}", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    print(process_info.communicate())
-    return new_nii_file,hdinfo
+    if dims is None:dim1,dim2,dim3 = DetermineOrientTransformation(hdinfo)
+    else:dim1,dim2,dim3 = dims
+    print("dimension direction:",dim1,dim2,dim3)
+
+    # _____back to original_____
+    bdims=[None,None,None]
+    axismap={'x':0,'y':1,'z':2}
+    # back dimesions from rec file
+    for i,t in enumerate(dims):
+        if t[0]=='-':sign=True;a=axismap[t[1]]
+        else:sign=False;a=axismap[t]
+        bdims[a]=("-" if sign else "")+['x','y','z'][i]
+    bdim1,bdim2,bdim3=bdims
+    print("back dimensions direction:",bdim1,bdim2,bdim3)
+
+    # running script
+    cmd=f"zsh fsl_generate.sh {nii_file} {dim1} {dim2} {dim3} {bdim1} {bdim2} {bdim3}"
+    if areas:cmd+=f" {str_areas}"
+
+    process_info = subprocess.Popen(cmd,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    print("fsl informations:")
+    for pc in process_info.communicate():
+        print(pc)
+    return hdinfo
