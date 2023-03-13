@@ -13,7 +13,7 @@ postf=".nii.gz"
 
 dirf=$(dirname $1)  # base directory, e.g. data/
 basef=$(basename $1) # e.g. P.nii
-mainf="${basef%.*}.nii.gz" # e.g. P
+mainf="${basef%.*(nii|nii.gz)}.nii.gz" # e.g. P
 rec_file=$dirf/rec_$mainf
 bet_file=$dirf/bet_$mainf
 betf=$(basename $bet_file) # e.g. bet_P.nii.gz
@@ -66,6 +66,7 @@ for idx in ${@:8}
 do
     # ___mask in rec___
     mask_infile=$(find ./D99_mask -type f -name ${idx}_\*.nii.gz)
+    echo $mask_infile
     maskm=$(basename ${mask_infile})
     rec_mask_outf=$dirf/mask_${maskm%$postf}_${recf}
     rec_mask_outfs_postfix+=$rec_mask_outf;rec_mask_outfs_postfix+="-max"

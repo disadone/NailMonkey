@@ -4,7 +4,17 @@ import re,subprocess
 import os
 import matplotlib.pyplot as plt
 import nibabel as nib
+import glob
 aa=np.asarray
+
+all_areas={}
+for f in glob.glob('./D99_mask/*.nii.gz'):
+    sp=os.path.basename(f).split('_')
+    k=int(sp[0])
+    a='_'.join(sp[1:])
+    all_areas[k]=a
+
+idx_all_areas=[*all_areas.keys()]
 
 def load_nii(file_path):
     """wrap load nii file using nibabel
@@ -192,12 +202,15 @@ def ProcessNiiFile(main_folder,nii_file,dims=None,back=True,areas=None):
     tuple(str)
         direction rectified nii file and the original nii file header info
     """
-    for dim in dims:
-        if not(dim in ['x','y','z','-x','-y','-z']):
-            raise Exception("dim must be x,y,z or -x,-y,-z")
+    if dims:
+        for dim in dims:
+            if not(dim in ['x','y','z','-x','-y','-z']):
+                raise Exception("dim must be x,y,z or -x,-y,-z")
     
     if areas:
+        if isinstance(areas,str) and areas.lower() =='all': areas=idx_all_areas.copy()
         str_areas=' '.join([str(int(a)) for a in areas])
+
     nii_file = os.path.join(main_folder,nii_file)
     print("nii file dealing:",nii_file)
     print("its path:",os.getcwd())
@@ -212,7 +225,7 @@ def ProcessNiiFile(main_folder,nii_file,dims=None,back=True,areas=None):
     bdims=[None,None,None]
     axismap={'x':0,'y':1,'z':2}
     # back dimesions from rec file
-    for i,t in enumerate(dims):
+    for i,t in enumerate([dim1,dim2,dim3]):
         if t[0]=='-':sign=True;a=axismap[t[1]]
         else:sign=False;a=axismap[t]
         bdims[a]=("-" if sign else "")+['x','y','z'][i]
